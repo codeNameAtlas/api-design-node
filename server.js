@@ -11,7 +11,11 @@ var jsonData = {count: 12, message: 'hey'};
 
 app.get('/', function(req, res) {
   //render the index.html file
-  res.sendfile('index.html');
+  res.sendFile(__dirname + '/index.html', function(err) {
+    if (err) {
+      res.status(500).send(err);
+    }
+  })
 });
 
 app.get('/data', function(req, res) {
